@@ -18,7 +18,7 @@
 
 //! Web3 rpc interface.
 use ethereum_types::H256;
-use jsonrpc_core::Result;
+use jsonrpc_core::{Result, BoxFuture};
 use jsonrpc_derive::rpc;
 
 use crate::types::Bytes;
@@ -28,7 +28,7 @@ use crate::types::Bytes;
 pub trait Web3Api {
     /// Returns current client version.
     #[rpc(name = "web3_clientVersion")]
-    fn client_version(&self) -> Result<String>;
+    fn client_version(&self) -> BoxFuture<Result<String>>;
 
     /// Returns sha3 of the given data
     #[rpc(name = "web3_sha3")]
