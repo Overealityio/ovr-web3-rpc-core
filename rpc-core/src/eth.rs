@@ -32,7 +32,7 @@ use crate::types::{
 pub trait EthApi {
     /// Returns protocol version encoded as a string (quotes are necessary).
     #[rpc(name = "eth_protocolVersion")]
-    fn protocol_version(&self) -> Result<u64>;
+    fn protocol_version(&self) -> BoxFuture<Result<u64>>;
 
     /// Returns the number of hashes per second that the node is mining with.
     #[rpc(name = "eth_hashrate")]
