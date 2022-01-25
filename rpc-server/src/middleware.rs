@@ -20,8 +20,7 @@
 
 use futures::{future::Either, Future};
 use jsonrpc_core::{
-    FutureOutput, FutureResponse, Metadata, Middleware as RequestMiddleware, Request,
-    Response,
+    FutureOutput, FutureResponse, Metadata, Middleware as RequestMiddleware, Request, Response,
 };
 
 /// Middleware for RPC calls
@@ -47,12 +46,7 @@ impl<M: Metadata> RequestMiddleware<M> for RpcMiddleware {
     type Future = FutureResponse;
     type CallFuture = FutureOutput;
 
-    fn on_request<F, X>(
-        &self,
-        request: Request,
-        meta: M,
-        next: F,
-    ) -> Either<FutureResponse, X>
+    fn on_request<F, X>(&self, request: Request, meta: M, next: F) -> Either<FutureResponse, X>
     where
         F: Fn(Request, M) -> X + Send + Sync,
         X: Future<Output = Option<Response>> + Send + 'static,

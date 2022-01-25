@@ -58,9 +58,7 @@ where
         from_value(v.clone())
             .map(VariadicValue::Single)
             .or_else(|_| from_value(v).map(VariadicValue::Multiple))
-            .map_err(|err| {
-                D::Error::custom(format!("Invalid variadic value type: {}", err))
-            })
+            .map_err(|err| D::Error::custom(format!("Invalid variadic value type: {}", err)))
     }
 }
 
@@ -219,10 +217,7 @@ impl FilteredParams {
     }
 
     /// Evaluates if a Bloom contains the provided address(es).
-    pub fn address_in_bloom(
-        bloom: Bloom,
-        address_bloom_filter: &[Option<Bloom>],
-    ) -> bool {
+    pub fn address_in_bloom(bloom: Bloom, address_bloom_filter: &[Option<Bloom>]) -> bool {
         if address_bloom_filter.is_empty() {
             // No filter provided, match.
             return true;
@@ -475,16 +470,13 @@ mod tests {
     use std::str::FromStr;
 
     fn block_bloom() -> Bloom {
-        let test_address =
-            H160::from_str("1000000000000000000000000000000000000000").unwrap();
-        let topic1 = H256::from_str(
-            "1000000000000000000000000000000000000000000000000000000000000000",
-        )
-        .unwrap();
-        let topic2 = H256::from_str(
-            "2000000000000000000000000000000000000000000000000000000000000000",
-        )
-        .unwrap();
+        let test_address = H160::from_str("1000000000000000000000000000000000000000").unwrap();
+        let topic1 =
+            H256::from_str("1000000000000000000000000000000000000000000000000000000000000000")
+                .unwrap();
+        let topic2 =
+            H256::from_str("2000000000000000000000000000000000000000000000000000000000000000")
+                .unwrap();
 
         let mut block_bloom = Bloom::default();
         block_bloom.accrue(BloomInput::Raw(&test_address[..]));
@@ -495,8 +487,7 @@ mod tests {
 
     #[test]
     fn bloom_filter_should_match_by_address() {
-        let test_address =
-            H160::from_str("1000000000000000000000000000000000000000").unwrap();
+        let test_address = H160::from_str("1000000000000000000000000000000000000000").unwrap();
         let filter = Filter {
             from_block: None,
             to_block: None,
@@ -513,8 +504,7 @@ mod tests {
 
     #[test]
     fn bloom_filter_should_not_match_by_address() {
-        let test_address =
-            H160::from_str("2000000000000000000000000000000000000000").unwrap();
+        let test_address = H160::from_str("2000000000000000000000000000000000000000").unwrap();
         let filter = Filter {
             from_block: None,
             to_block: None,
@@ -530,18 +520,15 @@ mod tests {
     }
     #[test]
     fn bloom_filter_should_match_by_topic() {
-        let topic1 = H256::from_str(
-            "1000000000000000000000000000000000000000000000000000000000000000",
-        )
-        .unwrap();
-        let topic2 = H256::from_str(
-            "2000000000000000000000000000000000000000000000000000000000000000",
-        )
-        .unwrap();
-        let topic3 = H256::from_str(
-            "3000000000000000000000000000000000000000000000000000000000000000",
-        )
-        .unwrap();
+        let topic1 =
+            H256::from_str("1000000000000000000000000000000000000000000000000000000000000000")
+                .unwrap();
+        let topic2 =
+            H256::from_str("2000000000000000000000000000000000000000000000000000000000000000")
+                .unwrap();
+        let topic3 =
+            H256::from_str("3000000000000000000000000000000000000000000000000000000000000000")
+                .unwrap();
         let filter = Filter {
             from_block: None,
             to_block: None,
@@ -566,18 +553,15 @@ mod tests {
     }
     #[test]
     fn bloom_filter_should_not_match_by_topic() {
-        let topic1 = H256::from_str(
-            "1000000000000000000000000000000000000000000000000000000000000000",
-        )
-        .unwrap();
-        let topic2 = H256::from_str(
-            "4000000000000000000000000000000000000000000000000000000000000000",
-        )
-        .unwrap();
-        let topic3 = H256::from_str(
-            "5000000000000000000000000000000000000000000000000000000000000000",
-        )
-        .unwrap();
+        let topic1 =
+            H256::from_str("1000000000000000000000000000000000000000000000000000000000000000")
+                .unwrap();
+        let topic2 =
+            H256::from_str("4000000000000000000000000000000000000000000000000000000000000000")
+                .unwrap();
+        let topic3 =
+            H256::from_str("5000000000000000000000000000000000000000000000000000000000000000")
+                .unwrap();
         let filter = Filter {
             from_block: None,
             to_block: None,
@@ -623,20 +607,16 @@ mod tests {
     }
     #[test]
     fn bloom_filter_should_match_combined() {
-        let test_address =
-            H160::from_str("1000000000000000000000000000000000000000").unwrap();
-        let topic1 = H256::from_str(
-            "1000000000000000000000000000000000000000000000000000000000000000",
-        )
-        .unwrap();
-        let topic2 = H256::from_str(
-            "2000000000000000000000000000000000000000000000000000000000000000",
-        )
-        .unwrap();
-        let topic3 = H256::from_str(
-            "3000000000000000000000000000000000000000000000000000000000000000",
-        )
-        .unwrap();
+        let test_address = H160::from_str("1000000000000000000000000000000000000000").unwrap();
+        let topic1 =
+            H256::from_str("1000000000000000000000000000000000000000000000000000000000000000")
+                .unwrap();
+        let topic2 =
+            H256::from_str("2000000000000000000000000000000000000000000000000000000000000000")
+                .unwrap();
+        let topic3 =
+            H256::from_str("3000000000000000000000000000000000000000000000000000000000000000")
+                .unwrap();
         let filter = Filter {
             from_block: None,
             to_block: None,
@@ -661,20 +641,16 @@ mod tests {
     }
     #[test]
     fn bloom_filter_should_not_match_combined() {
-        let test_address =
-            H160::from_str("2000000000000000000000000000000000000000").unwrap();
-        let topic1 = H256::from_str(
-            "1000000000000000000000000000000000000000000000000000000000000000",
-        )
-        .unwrap();
-        let topic2 = H256::from_str(
-            "2000000000000000000000000000000000000000000000000000000000000000",
-        )
-        .unwrap();
-        let topic3 = H256::from_str(
-            "3000000000000000000000000000000000000000000000000000000000000000",
-        )
-        .unwrap();
+        let test_address = H160::from_str("2000000000000000000000000000000000000000").unwrap();
+        let topic1 =
+            H256::from_str("1000000000000000000000000000000000000000000000000000000000000000")
+                .unwrap();
+        let topic2 =
+            H256::from_str("2000000000000000000000000000000000000000000000000000000000000000")
+                .unwrap();
+        let topic3 =
+            H256::from_str("3000000000000000000000000000000000000000000000000000000000000000")
+                .unwrap();
         let filter = Filter {
             from_block: None,
             to_block: None,
@@ -699,14 +675,12 @@ mod tests {
     }
     #[test]
     fn bloom_filter_should_match_wildcards_by_topic() {
-        let topic2 = H256::from_str(
-            "2000000000000000000000000000000000000000000000000000000000000000",
-        )
-        .unwrap();
-        let topic3 = H256::from_str(
-            "3000000000000000000000000000000000000000000000000000000000000000",
-        )
-        .unwrap();
+        let topic2 =
+            H256::from_str("2000000000000000000000000000000000000000000000000000000000000000")
+                .unwrap();
+        let topic3 =
+            H256::from_str("3000000000000000000000000000000000000000000000000000000000000000")
+                .unwrap();
         let filter = Filter {
             from_block: None,
             to_block: None,
@@ -731,14 +705,12 @@ mod tests {
     }
     #[test]
     fn bloom_filter_should_not_match_wildcards_by_topic() {
-        let topic2 = H256::from_str(
-            "4000000000000000000000000000000000000000000000000000000000000000",
-        )
-        .unwrap();
-        let topic3 = H256::from_str(
-            "5000000000000000000000000000000000000000000000000000000000000000",
-        )
-        .unwrap();
+        let topic2 =
+            H256::from_str("4000000000000000000000000000000000000000000000000000000000000000")
+                .unwrap();
+        let topic3 =
+            H256::from_str("5000000000000000000000000000000000000000000000000000000000000000")
+                .unwrap();
         let filter = Filter {
             from_block: None,
             to_block: None,

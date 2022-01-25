@@ -24,8 +24,6 @@ use jsonrpc_derive::rpc;
 
 use crate::types::{Filter, FilterChanges, Index, Log};
 
-pub use rpc_impl_EthFilterApi::gen_server::EthFilterApi as EthFilterApiServer;
-
 /// Eth filters rpc api (polling).
 #[rpc(server)]
 pub trait EthFilterApi {

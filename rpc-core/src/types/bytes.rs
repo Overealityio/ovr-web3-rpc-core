@@ -118,8 +118,7 @@ mod tests {
     fn test_bytes_deserialize() {
         let bytes0: Result<Bytes, serde_json::Error> = serde_json::from_str(r#""∀∂""#);
         let bytes1: Result<Bytes, serde_json::Error> = serde_json::from_str(r#""""#);
-        let bytes2: Result<Bytes, serde_json::Error> =
-            serde_json::from_str(r#""0x123""#);
+        let bytes2: Result<Bytes, serde_json::Error> = serde_json::from_str(r#""0x123""#);
         let bytes3: Result<Bytes, serde_json::Error> = serde_json::from_str(r#""0xgg""#);
 
         let bytes4: Bytes = serde_json::from_str(r#""0x""#).unwrap();

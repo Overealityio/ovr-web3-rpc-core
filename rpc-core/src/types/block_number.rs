@@ -118,9 +118,7 @@ impl<'a> Visitor<'a> for BlockNumberVisitor {
                 .map(BlockNumber::Num)
                 .map_err(|e| Error::custom(format!("Invalid block number: {}", e))),
             _ => value.parse::<u64>().map(BlockNumber::Num).map_err(|_| {
-                Error::custom(
-                    "Invalid block number: non-decimal or missing 0x prefix".to_string(),
-                )
+                Error::custom("Invalid block number: non-decimal or missing 0x prefix".to_string())
             }),
         }
     }

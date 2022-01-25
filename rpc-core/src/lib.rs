@@ -24,8 +24,8 @@ mod web3;
 
 pub mod types;
 
-pub use eth::{EthApi, EthApiServer};
-pub use eth_filter::{EthFilterApi, EthFilterApiServer};
-pub use eth_pubsub::{EthPubSubApi, EthPubSubApiServer};
-pub use net::{NetApi, NetApiServer};
-pub use web3::{Web3Api, Web3ApiServer};
+pub use eth::EthApi;
+pub use eth_filter::EthFilterApi;
+pub use eth_pubsub::EthPubSubApi;
+pub use net::NetApi;
+pub use web3::Web3Api;

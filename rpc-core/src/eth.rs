@@ -27,8 +27,6 @@ use crate::types::{
     Transaction, TransactionRequest, Work,
 };
 
-pub use rpc_impl_EthApi::gen_server::EthApi as EthApiServer;
-
 /// Eth rpc interface.
 #[rpc(server)]
 pub trait EthApi {
@@ -133,11 +131,8 @@ pub trait EthApi {
 
     /// Returns transaction at given block hash and index.
     #[rpc(name = "eth_getTransactionByBlockHashAndIndex")]
-    fn transaction_by_block_hash_and_index(
-        &self,
-        _: H256,
-        _: Index,
-    ) -> Result<Option<Transaction>>;
+    fn transaction_by_block_hash_and_index(&self, _: H256, _: Index)
+        -> Result<Option<Transaction>>;
 
     /// Returns transaction by given block number and index.
     #[rpc(name = "eth_getTransactionByBlockNumberAndIndex")]
@@ -153,11 +148,7 @@ pub trait EthApi {
 
     /// Returns an uncles at given block and index.
     #[rpc(name = "eth_getUncleByBlockHashAndIndex")]
-    fn uncle_by_block_hash_and_index(
-        &self,
-        _: H256,
-        _: Index,
-    ) -> Result<Option<RichBlock>>;
+    fn uncle_by_block_hash_and_index(&self, _: H256, _: Index) -> Result<Option<RichBlock>>;
 
     /// Returns an uncles at given block and index.
     #[rpc(name = "eth_getUncleByBlockNumberAndIndex")]

@@ -42,15 +42,15 @@ pub use self::block_number::BlockNumber;
 pub use self::bytes::Bytes;
 pub use self::call_request::CallRequest;
 pub use self::filter::{
-    Filter, FilterAddress, FilterChanges, FilterPool, FilterPoolItem, FilterType,
-    FilteredParams, Topic, VariadicValue,
+    Filter, FilterAddress, FilterChanges, FilterPool, FilterPoolItem, FilterType, FilteredParams,
+    Topic, VariadicValue,
 };
 pub use self::index::Index;
 pub use self::log::Log;
 pub use self::receipt::Receipt;
 pub use self::sync::{
-    ChainStatus, EthProtocolInfo, PeerCount, PeerInfo, PeerNetworkInfo,
-    PeerProtocolsInfo, Peers, PipProtocolInfo, SyncInfo, SyncStatus, TransactionStats,
+    ChainStatus, EthProtocolInfo, PeerCount, PeerInfo, PeerNetworkInfo, PeerProtocolsInfo, Peers,
+    PipProtocolInfo, SyncInfo, SyncStatus, TransactionStats,
 };
 pub use self::transaction::{
     LocalTransactionStatus, PendingTransaction, PendingTransactions, RichRawTransaction,
