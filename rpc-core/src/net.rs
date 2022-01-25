@@ -26,7 +26,7 @@ use jsonrpc_derive::rpc;
 pub trait NetApi {
     /// Returns protocol version.
     #[rpc(name = "net_version")]
-    fn version(&self) -> Result<String>;
+    fn version(&self) -> BoxFuture<Result<String>>;
 
     /// Returns number of peers connected to node.
     #[rpc(name = "net_peerCount")]
