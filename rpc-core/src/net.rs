@@ -35,5 +35,5 @@ pub trait NetApi {
     /// Returns true if client is actively listening for network connections.
     /// Otherwise false.
     #[rpc(name = "net_listening")]
-    fn is_listening(&self) -> Result<bool>;
+    fn is_listening(&self) -> BoxFuture<Result<bool>>;
 }
