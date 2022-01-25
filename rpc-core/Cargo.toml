@@ -1,5 +1,5 @@
 [package]
-name = "fp-rpc-core"
+name = "web3-rpc-core"
 version = "0.1.0"
 authors = ["FindoraNetwork"]
 edition = "2021"
