@@ -20,13 +20,14 @@
 use crate::types::PeerCount;
 use jsonrpc_core::{Result, BoxFuture};
 use jsonrpc_derive::rpc;
+use serde_json::Value;
 
 /// Net rpc interface.
 #[rpc(server)]
 pub trait NetApi {
     /// Returns protocol version.
     #[rpc(name = "net_version")]
-    fn version(&self) -> BoxFuture<Result<String>>;
+    fn version(&self) -> BoxFuture<Result<Value>>;
 
     /// Returns number of peers connected to node.
     #[rpc(name = "net_peerCount")]
