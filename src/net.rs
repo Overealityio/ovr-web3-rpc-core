@@ -18,7 +18,7 @@
 
 //! Net rpc interface.
 use crate::types::PeerCount;
-use jsonrpc_core::{Result, BoxFuture};
+use jsonrpc_core::{BoxFuture, Result};
 use jsonrpc_derive::rpc;
 use serde_json::Value;
 

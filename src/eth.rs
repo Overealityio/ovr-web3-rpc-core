@@ -131,8 +131,11 @@ pub trait EthApi {
 
     /// Returns transaction at given block hash and index.
     #[rpc(name = "eth_getTransactionByBlockHashAndIndex")]
-    fn transaction_by_block_hash_and_index(&self, _: H256, _: Index)
-        -> BoxFuture<Result<Option<Transaction>>>;
+    fn transaction_by_block_hash_and_index(
+        &self,
+        _: H256,
+        _: Index,
+    ) -> BoxFuture<Result<Option<Transaction>>>;
 
     /// Returns transaction by given block number and index.
     #[rpc(name = "eth_getTransactionByBlockNumberAndIndex")]

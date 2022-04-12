@@ -18,7 +18,7 @@
 
 //! Web3 rpc interface.
 use ethereum_types::H256;
-use jsonrpc_core::{Result, BoxFuture};
+use jsonrpc_core::{BoxFuture, Result};
 use jsonrpc_derive::rpc;
 
 use crate::types::Bytes;
