@@ -1,5 +1,5 @@
 [package]
-name = "web3-rpc-core"
+name = "ovr-web3-rpc-core"
 version = "0.1.0"
 authors = ["Overealityio"]
 edition = "2021"
